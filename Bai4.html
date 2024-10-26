@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      width: 600px;
+      margin: 50px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .input-container {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    input[type="text"] {
+      width: calc(100% - 100px);
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-left: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-left: 10px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tr:nth-child(odd) {
+      background-color: #fefefe;
+    }
+
+    td button {
+      padding: 5px 10px;
+      font-size: 12px;
+      background-color: #28a745;
+    }
+
+    td button:hover {
+      background-color: #218838;
+    }
+
+    td button {
+      background-color: #dc3545;
+    }
+
+    td button:hover {
+      background-color: #c82333;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Customer</h1>
+  <div class="input-container">
+    <input id="Them_Id" type="text" placeholder="ID">
+    <input id="Them_Name" type="text" placeholder="Name">
+    <input id="Them_Phone" type="text" placeholder="phone">
+    <input id="Them_Address" type="text" placeholder="address">
+    <input id="Them_Email" type="text" placeholder="email">
+    <button id="add">them</button>
+  </div>
+  <div id="result"></div>
+</div>
+
+<script>
+  class Customer {
+    id;
+    name;
+    phone;
+    address;
+    email;
+
+    constructor(id, name, phone, address, email) {
+      this.id = id;
+      this.name = name;
+      this.phone = phone;
+      this.address = address;
+      this.email = email;
+    }
+
+  }
+
+  function displayCustomer(Customer) {
+    let result = "<table>";
+    result += "<tr><th>ID</th><th>Name</th><th>Phone</th><th>Address</th><th>Email</th></tr>";
+    for (let i = 0; i < Customer.length; i++) {
+      result += "<tr>";
+      result += "<td>" + Customer[i].id + "</td>";
+      result += "<td>" + Customer[i].name + "</td>";
+      result += "<td>" + Customer[i].phone + "</td>";
+      result += "<td>" + Customer[i].address + "</td>";
+      result += "<td>" + Customer[i].email + "</td>";
+      result += "</tr>";
+    }
+    result += "</table>";
+    document.getElementById("result").innerHTML = result;
+  }
+
+  document.getElementById("add").addEventListener("click", function () {
+    let new_id = document.getElementById("Them_Id").value;
+    let new_name = document.getElementById("Them_Name").value;
+    let new_phone = document.getElementById("Them_Phone").value;
+    let new_address = document.getElementById("Them_Address").value;
+    let new_email = document.getElementById("Them_Email").value;
+    customer.push(new Customer(new_id,new_name, new_phone, new_address, new_email));
+    document.getElementById("Them_Id").value = "";
+    document.getElementById("Them_Name").value = "";
+    document.getElementById("Them_Phone").value = "";
+    document.getElementById("Them_Address").value = "";
+    document.getElementById("Them_Email").value = "";
+    console.log(customer);
+    displayCustomer(customer);
+  })
+
+
+  let customer = [];
+  customer.push(new Customer(1, "Khanh", "02345678", "DongHung", "asdasd@gmail.com"));
+  displayCustomer(customer);
+</script>
+</body>
+</html>
